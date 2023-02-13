@@ -5,6 +5,7 @@ use trader::trader::MarketKind::{BFB, BOSE, DOGE};
 use trader::trader::Trader;
 use trader::trader::trader_errors::{TraderDemandError, TraderSupplyError};
 use colored::Colorize;
+use gtk_plotter;
 
 //My implementation of "a struct function that is dynamically defined" (achieved using the closoure field inside the struct) is definitely
 //not a common one, therefore I had to come out for an acrobatic way of dealing with states. I was scared of doing this:
@@ -109,7 +110,7 @@ fn BFB_YUAN_BUY_EXPLOIT(trader : &mut Trader) {
 
         //exploiting a bug. A side effect is that it breaks the supply price function
         while trader.get_supply_price(BFB, YUAN).is_err() {
-            println!("no good");
+            //println!("no good");
             //println!("price: {}", trader.get_demand_price(BFB, YUAN));
             //println!("asd: {}", trader.get_good_qty(BFB, YUAN));
             trader.sell(BFB, YUAN, 0.001).unwrap();

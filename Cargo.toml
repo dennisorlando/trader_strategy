@@ -14,3 +14,4 @@ market_common = { version = "1.0.10", registry = "kellnr", package = "unitn_mark
 rodio = "0.16.0"
 tase = { version = "0.1.3", registry = "kellnr", package = "tase" }
 trader = { path = "../trader" }
+gtk_plotter = { git = "https://github.com/simusclay/gtk_plotter" }

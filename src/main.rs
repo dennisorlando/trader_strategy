@@ -18,7 +18,7 @@ use market_common::market::Market;
 fn main() {
 
 
-    let tase = tase::TASE::new_random();
+    //let tase = tase::TASE::new_random();
     let bose = BoseMarket::new_random();
     let doge = DogeMarket::new_random();
     let bfb = Bfb::new_random();
@@ -27,12 +27,16 @@ fn main() {
         .with_market(BOSE, Rc::clone(&bose))
         .with_market(DOGE, Rc::clone(&doge))
         .with_market(BFB, Rc::clone(&bfb))
-        .with_market(TASE, Rc::clone(&tase))
+        //.with_market(TASE, Rc::clone(&tase))
         .with_initial_money(100000.0);
 
     println!("{}", trader.get_supply_price(BFB, YUAN).unwrap());
 
     trader.set_strategy(crate::strategy::strategy);
     trader.run(1);
+
+    let data = Rc::new(trader.data.clone());
+    let liq = Rc::new(trader.liquidity.clone());
+    gtk_plotter::gtk_plotter(data, liq);
 
 }
